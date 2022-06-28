@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">rastreio_how6</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_para_lojistas">Login para Lojistas</string>
+    <string name="cnpj">CNPJ</string>
+    <string name="senha">Senha</string>
+    <string name="realizar_login">Realizar Login</string>
+    <string name="cadastrar_loja">Cadastrar Loja</string>
+    <string name="rastrear_encomenda">Rastrear Encomenda</string>
+    <string name="digite_o_c_digo_da_encomenda">Digite o código da encomenda</string>
+    <string name="encomenda">Encomenda</string>
+    <string name="status">Status:</string>
+    <string name="data_envio">Data Envio:</string>
+    <string name="vazio">--</string>
+    <string name="data_altera_o">Data Alteração</string>
+    <string name="nome">Nome:</string>
+    <string name="valor">Valor:</string>
+    <string name="descri_o">Descrição:</string>
+    <string name="voltar">Voltar</string>
 </resources>
