@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.rastreio_how6.R;
 import com.example.rastreio_how6.loja.CadastroFragment;
+import com.example.rastreio_how6.loja.MenuFragment;
 import com.example.rastreio_how6.viewRastreio.RastrearEncomenda;
 
 public class LoginFragment extends Fragment {
@@ -74,6 +75,8 @@ public class LoginFragment extends Fragment {
             Toast.makeText(getActivity(), "CNPJ ou Senha inválidos", Toast.LENGTH_SHORT).show();
         } else {
             // realizar login
+
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
         }
     }
 

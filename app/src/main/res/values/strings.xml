@@ -20,4 +20,6 @@
     <string name="voltar">Voltar</string>
     <string name="cadastro_para_lojistas">Cadastro para Lojistas</string>
     <string name="nomeLojista">Nome</string>
+    <string name="editar_dados">Editar Dados</string>
+    <string name="listar_encomendas">Listar Encomendas</string>
 </resources>
