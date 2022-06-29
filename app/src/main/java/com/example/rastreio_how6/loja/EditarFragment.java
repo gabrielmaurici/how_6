@@ -14,34 +14,38 @@ import android.widget.Toast;
 import com.example.rastreio_how6.R;
 import com.example.rastreio_how6.login.LoginFragment;
 
-public class CadastroFragment extends Fragment {
 
-    EditText editTextNomeLojista, editTextCnpjCadastro, editTextSenhaCadastro;
+public class EditarFragment extends Fragment {
 
-    public CadastroFragment() {
+    EditText editTextNomeLojistaEdicao, editTextCnpjEdicao, editTextSenhaEdicao;
+
+    public EditarFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_cadastro_loja, container, false);
 
-        editTextNomeLojista = view.findViewById(R.id.editTextNomeLojista);
-        editTextCnpjCadastro = view.findViewById(R.id.editTextCnpjCadastro);
-        editTextSenhaCadastro = view.findViewById(R.id.editTextSenhaCadastro);
+        View view = inflater.inflate(R.layout.fragment_editar_loja, container, false);
 
 
-        Button btnCadastrarLoja = view.findViewById(R.id.buttonCadastrarLoja);
-        btnCadastrarLoja.setOnClickListener(new View.OnClickListener() {
+        editTextNomeLojistaEdicao = view.findViewById(R.id.editTextNomeLojistaEdicao);
+        editTextCnpjEdicao = view.findViewById(R.id.editTextCnpjEdicao);
+        editTextSenhaEdicao = view.findViewById(R.id.editTextSenhaEdicao);
+
+        Button btnEditar = view.findViewById(R.id.buttonSalvarAlteracoesLoja);
+        btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cadastrar();
+                editar();
             }
         });
 
@@ -56,17 +60,16 @@ public class CadastroFragment extends Fragment {
         return view;
     }
 
-    private void cadastrar() {
-        if(editTextNomeLojista.getText().toString().equals("") ||
-            editTextCnpjCadastro.getText().toString().equals("") ||
-            editTextSenhaCadastro.getText().toString().equals("")) {
+    private void editar() {
+        if(editTextNomeLojistaEdicao.getText().toString().equals("") ||
+                editTextCnpjEdicao.getText().toString().equals("") ||
+                editTextSenhaEdicao.getText().toString().equals("")) {
             Toast.makeText(getActivity(), "É preciso preencher todos os campos do formulário", Toast.LENGTH_SHORT).show();
         } else {
             // realizar cadastro
         }
     }
-
     private void voltar() {
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new LoginFragment()).commit();;
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();;
     }
 }

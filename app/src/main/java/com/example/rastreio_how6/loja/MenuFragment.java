@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.rastreio_how6.R;
 
@@ -29,6 +30,18 @@ public class MenuFragment extends Fragment {
 
 
 
+        Button btnEditarDados = view.findViewById(R.id.buttonEditarLoja);
+        btnEditarDados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editarDados();
+            }
+        });
+
         return view;
+    }
+
+    private void editarDados() {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new EditarFragment()).commit();
     }
 }

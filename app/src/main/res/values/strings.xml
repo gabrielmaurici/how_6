@@ -22,4 +22,6 @@
     <string name="nomeLojista">Nome</string>
     <string name="editar_dados">Editar Dados</string>
     <string name="listar_encomendas">Listar Encomendas</string>
+    <string name="editar_dados_loja">Editar Dados Loja</string>
+    <string name="salvar_altera_es">Salvar Alterações</string>
 </resources>
