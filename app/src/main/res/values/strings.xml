@@ -18,4 +18,6 @@
     <string name="valor">Valor:</string>
     <string name="descri_o">Descrição:</string>
     <string name="voltar">Voltar</string>
+    <string name="cadastro_para_lojistas">Cadastro para Lojistas</string>
+    <string name="nomeLojista">Nome</string>
 </resources>

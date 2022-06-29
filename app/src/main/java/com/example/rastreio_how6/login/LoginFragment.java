@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.rastreio_how6.R;
+import com.example.rastreio_how6.loja.CadastroFragment;
 import com.example.rastreio_how6.viewRastreio.RastrearEncomenda;
 
 public class LoginFragment extends Fragment {
@@ -77,6 +78,6 @@ public class LoginFragment extends Fragment {
     }
 
     private void cadastrarLoja() {
-
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new CadastroFragment()).commit();
     }
 }
