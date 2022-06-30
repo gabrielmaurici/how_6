@@ -12,7 +12,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.rastreio_how6.R;
+import com.example.rastreio_how6.database.DatabaseHelper;
+import com.example.rastreio_how6.database.RepositorioIdLoja;
 import com.example.rastreio_how6.loja.CadastroFragment;
+import com.example.rastreio_how6.loja.Loja;
 import com.example.rastreio_how6.loja.MenuFragment;
 import com.example.rastreio_how6.viewRastreio.RastrearEncomenda;
 
@@ -23,6 +26,7 @@ public class LoginFragment extends Fragment {
 
     public LoginFragment() {
         // Required empty public constructor
+
     }
 
     @Override
@@ -75,8 +79,15 @@ public class LoginFragment extends Fragment {
             Toast.makeText(getActivity(), "CNPJ ou Senha inválidos", Toast.LENGTH_SHORT).show();
         } else {
             // realizar login
+            DatabaseHelper repositorio = new DatabaseHelper(getActivity());
+            int verificaUsuario = repositorio.loginLoja(editTextCnpj.getText().toString(), editTextSenha.getText().toString());
 
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
+            Toast.makeText(getActivity(), verificaUsuario >= 1 ? "Realizando login..." : "CNPJ ou Senha inválidos", Toast.LENGTH_LONG).show();
+
+            if(verificaUsuario >= 1) {
+                RepositorioIdLoja.idLoja = verificaUsuario;
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
+            }
         }
     }
 

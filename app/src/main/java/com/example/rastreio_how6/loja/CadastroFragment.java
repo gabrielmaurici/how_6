@@ -12,11 +12,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.rastreio_how6.R;
+import com.example.rastreio_how6.database.DatabaseHelper;
 import com.example.rastreio_how6.login.LoginFragment;
 
 public class CadastroFragment extends Fragment {
 
-    EditText editTextNomeLojista, editTextCnpjCadastro, editTextSenhaCadastro;
+    EditText editTextNomeLoja, editTextCnpjCadastro, editTextSenhaCadastro;
 
     public CadastroFragment() {
         // Required empty public constructor
@@ -32,7 +33,7 @@ public class CadastroFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cadastro_loja, container, false);
 
-        editTextNomeLojista = view.findViewById(R.id.editTextNomeLojista);
+        editTextNomeLoja = view.findViewById(R.id.editTextNomeLoja);
         editTextCnpjCadastro = view.findViewById(R.id.editTextCnpjCadastro);
         editTextSenhaCadastro = view.findViewById(R.id.editTextSenhaCadastro);
 
@@ -57,12 +58,22 @@ public class CadastroFragment extends Fragment {
     }
 
     private void cadastrar() {
-        if(editTextNomeLojista.getText().toString().equals("") ||
+        if(editTextNomeLoja.getText().toString().equals("") ||
             editTextCnpjCadastro.getText().toString().equals("") ||
             editTextSenhaCadastro.getText().toString().equals("")) {
             Toast.makeText(getActivity(), "É preciso preencher todos os campos do formulário", Toast.LENGTH_SHORT).show();
         } else {
-            // realizar cadastro
+            DatabaseHelper repositorio = new DatabaseHelper(getActivity());
+
+            Loja loja = new Loja(editTextNomeLoja.getText().toString(),
+                editTextCnpjCadastro.getText().toString(),
+                editTextSenhaCadastro.getText().toString()
+            );
+
+            repositorio.cadastrarLoja(loja);
+
+            Toast.makeText(getActivity(), "Loja Cadastrada com sucesso!", Toast.LENGTH_LONG).show();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
         }
     }
 

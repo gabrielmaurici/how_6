@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.rastreio_how6.R;
+import com.example.rastreio_how6.database.DatabaseHelper;
+import com.example.rastreio_how6.database.RepositorioIdLoja;
 import com.example.rastreio_how6.login.LoginFragment;
 
 
@@ -20,9 +23,7 @@ public class EditarFragment extends Fragment {
     EditText editTextNomeLojistaEdicao, editTextCnpjEdicao, editTextSenhaEdicao;
 
     public EditarFragment() {
-        // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class EditarFragment extends Fragment {
         editTextNomeLojistaEdicao = view.findViewById(R.id.editTextNomeLojistaEdicao);
         editTextCnpjEdicao = view.findViewById(R.id.editTextCnpjEdicao);
         editTextSenhaEdicao = view.findViewById(R.id.editTextSenhaEdicao);
+
+        buscarLoja();
 
         Button btnEditar = view.findViewById(R.id.buttonSalvarAlteracoesLoja);
         btnEditar.setOnClickListener(new View.OnClickListener() {
@@ -60,13 +63,27 @@ public class EditarFragment extends Fragment {
         return view;
     }
 
+    private void buscarLoja() {
+        DatabaseHelper repositorio = new DatabaseHelper(getActivity());
+        Loja loja = repositorio.buscaLojaPorId(RepositorioIdLoja.idLoja);
+        editTextNomeLojistaEdicao.setText(loja.getNome());
+        editTextCnpjEdicao.setText(loja.getCnpj());
+        editTextSenhaEdicao.setText(loja.getSenha());
+    }
+
     private void editar() {
         if(editTextNomeLojistaEdicao.getText().toString().equals("") ||
                 editTextCnpjEdicao.getText().toString().equals("") ||
                 editTextSenhaEdicao.getText().toString().equals("")) {
             Toast.makeText(getActivity(), "É preciso preencher todos os campos do formulário", Toast.LENGTH_SHORT).show();
         } else {
-            // realizar cadastro
+            DatabaseHelper repositorio = new DatabaseHelper(getActivity());
+            Loja loja = new Loja(editTextNomeLojistaEdicao.getText().toString(),
+                editTextCnpjEdicao.getText().toString(),
+                editTextSenhaEdicao.getText().toString()
+            );
+
+            repositorio.atualizaLoja(loja);
         }
     }
     

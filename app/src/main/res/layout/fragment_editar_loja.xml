@@ -73,6 +73,14 @@
             android:text="@string/salvar_altera_es" />
 
         <Button
+            android:id="@+id/buttonDeletarLoja"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:backgroundTint="@color/red"
+            android:layout_marginTop="5dp"
+            android:text="@string/deletar_loja" />
+
+        <Button
             android:id="@+id/buttonVoltar"
             android:layout_width="match_parent"
             android:layout_height="50sp"

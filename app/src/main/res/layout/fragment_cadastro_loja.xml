@@ -30,7 +30,7 @@
             android:text="@string/nomeLojista" />
 
         <EditText
-            android:id="@+id/editTextNomeLojista"
+            android:id="@+id/editTextNomeLoja"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

@@ -18,6 +18,10 @@ public class CadastroFragment extends Fragment {
 
     EditText editTextIdLoja, editTextIdProduto;
 
+    public CadastroFragment() {
+
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
