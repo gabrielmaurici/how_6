@@ -24,4 +24,18 @@
     <string name="listar_encomendas">Listar Encomendas</string>
     <string name="editar_dados_loja">Editar Dados Loja</string>
     <string name="salvar_altera_es">Salvar Alterações</string>
+    <string name="cadastrar_encomenda">Cadastrar Encomenda</string>
+    <string name="atualizar_encomenda">Atualizar Encomenda</string>
+    <string name="menu_loja">Menu Loja</string>
+    <string name="menu_encomendas">Menu Encomendas</string>
+    <string name="encomendas">Encomendas</string>
+    <string name="produtos">Produtos</string>
+    <string name="cadastrar_produto">Cadastrar Produto</string>
+    <string name="listar_produtos">Listar Produtos</string>
+    <string name="status_encomenda">Status Encomenda</string>
+    <string name="enviado_para_transportadora">Enviado Para a Transportadora</string>
+    <string name="id_da_loja">Id da Loja</string>
+    <string name="nome_do_produto">Nome do Produto</string>
+    <string name="descri_o_do_produto">Descrição do Produto</string>
+    <string name="valor_do_produto">Valor do Produto</string>
 </resources>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".loja.CadastroFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="150dp"
+        android:paddingHorizontal="20dp">
+
+        <TextView
+            android:id="@+id/textViewCadastrarEncomenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="@string/cadastrar_encomenda" />
+
+        <TextView
+            android:id="@+id/textViewIdLoja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:text="@string/id_da_loja" />
+
+        <EditText
+            android:id="@+id/editTextIdLoja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"/>
+
+        <TextView
+            android:id="@+id/textViewIdProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:text="Id do Produto" />
+
+        <EditText
+            android:id="@+id/editTextIdProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"/>
+
+        <TextView
+            android:id="@+id/textViewStatusEncomenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="@string/status_encomenda" />
+
+        <TextView
+            android:id="@+id/editTextStatusProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:ems="10"
+            android:textSize="16dp"
+            android:text="@string/enviado_para_transportadora"/>
+
+        <View
+            android:layout_height="1dp"
+            android:layout_width="match_parent"
+            android:background="#000000"/>
+
+
+        <Button
+            android:id="@+id/buttonCadastrarEncomendaFinal"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:backgroundTint="@color/green"
+            android:layout_marginTop="5dp"
+            android:text="@string/cadastrar_encomenda" />
+
+        <Button
+            android:id="@+id/buttonVoltar"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:backgroundTint="@color/black"
+
+            android:text="@string/voltar" />
+
+        <FrameLayout
+            android:id="@+id/frame_cadastrarEncomenda"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

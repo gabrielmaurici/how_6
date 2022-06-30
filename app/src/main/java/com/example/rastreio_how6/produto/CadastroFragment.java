@@ -1,4 +1,4 @@
-package com.example.rastreio_how6.loja;
+package com.example.rastreio_how6.produto;
 
 import android.os.Bundle;
 
@@ -12,17 +12,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.rastreio_how6.R;
-import com.example.rastreio_how6.login.LoginFragment;
+import com.example.rastreio_how6.loja.MenuFragment;
 
+public class CadastroFragment extends Fragment {
 
-public class EditarFragment extends Fragment {
-
-    EditText editTextNomeLojistaEdicao, editTextCnpjEdicao, editTextSenhaEdicao;
-
-    public EditarFragment() {
-        // Required empty public constructor
-    }
-
+    EditText editTextIdLoja, editTextNomeProduto, editTextValorProduto, editTextDescricaoProduto;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,19 +27,18 @@ public class EditarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_cadastro_produto, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_editar_loja, container, false);
+        editTextIdLoja = view.findViewById(R.id.editTextIdLoja);
+        editTextNomeProduto = view.findViewById(R.id.editTextNomeProduto);
+        editTextValorProduto = view.findViewById(R.id.editTextValorProduto);
+        editTextDescricaoProduto = view.findViewById(R.id.editTextDescricaoProduto);
 
-
-        editTextNomeLojistaEdicao = view.findViewById(R.id.editTextNomeLojistaEdicao);
-        editTextCnpjEdicao = view.findViewById(R.id.editTextCnpjEdicao);
-        editTextSenhaEdicao = view.findViewById(R.id.editTextSenhaEdicao);
-
-        Button btnEditar = view.findViewById(R.id.buttonSalvarAlteracoesLoja);
-        btnEditar.setOnClickListener(new View.OnClickListener() {
+        Button btnCadastrarProduto = view.findViewById(R.id.buttonCadastrarProdutoFinal);
+        btnCadastrarProduto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editar();
+                cadastrarProduto();
             }
         });
 
@@ -60,16 +53,15 @@ public class EditarFragment extends Fragment {
         return view;
     }
 
-    private void editar() {
-        if(editTextNomeLojistaEdicao.getText().toString().equals("") ||
-                editTextCnpjEdicao.getText().toString().equals("") ||
-                editTextSenhaEdicao.getText().toString().equals("")) {
+    private void cadastrarProduto() {
+        if(editTextIdLoja.getText().toString().equals("") || editTextNomeProduto.getText().toString().equals("") ||
+        editTextValorProduto.getText().toString().equals("") || editTextDescricaoProduto.getText().toString().equals("")) {
             Toast.makeText(getActivity(), "É preciso preencher todos os campos do formulário", Toast.LENGTH_SHORT).show();
         } else {
-            // realizar cadastro
+            // cadastrar produto
         }
     }
-    
+
     private void voltar() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
     }

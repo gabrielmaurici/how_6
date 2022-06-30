@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="20dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="130dp"
         tools:ignore="UselessParent">
 
 
@@ -22,7 +22,7 @@
             android:textStyle="bold"
             android:padding="10dp"
             android:textAlignment="center"
-            android:text="Menu Loja" />
+            android:text="@string/menu_loja" />
 
         <Button
             android:id="@+id/buttonEditarLoja"
@@ -31,12 +31,54 @@
             android:backgroundTint="@color/black"
             android:text="@string/editar_dados" />
 
+        <TextView
+            android:id="@+id/textEncomendas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:text="@string/encomendas" />
+
+        <Button
+            android:id="@+id/buttonCadastrarEncomenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="@string/cadastrar_encomenda" />
+
         <Button
             android:id="@+id/buttonListarEncomendas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
             android:text="@string/listar_encomendas" />
+
+        <TextView
+            android:id="@+id/textProdutos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:text="@string/produtos" />
+
+        <Button
+            android:id="@+id/buttonCadastrarProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="@string/cadastrar_produto" />
+
+        <Button
+            android:id="@+id/buttonListarProdutos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:text="@string/listar_produtos" />
+
 
         <FrameLayout
             android:id="@+id/frame_menuLoja"

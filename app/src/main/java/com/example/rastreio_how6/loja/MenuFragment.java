@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.rastreio_how6.encomenda.CadastroFragment;
 import com.example.rastreio_how6.R;
 
 public class MenuFragment extends Fragment {
@@ -38,10 +39,34 @@ public class MenuFragment extends Fragment {
             }
         });
 
+        Button btnCadastrarEncomenda = view.findViewById(R.id.buttonCadastrarEncomenda);
+        btnCadastrarEncomenda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cadastrarEncomenda();
+            }
+        });
+
+        Button btnCadastrarProduto = view.findViewById(R.id.buttonCadastrarProduto);
+        btnCadastrarProduto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cadastrarProduto();
+            }
+        });
+
         return view;
     }
 
     private void editarDados() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new EditarFragment()).commit();
+    }
+
+    private void cadastrarEncomenda() {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new CadastroFragment()).commit();
+    }
+
+    private void cadastrarProduto() {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new com.example.rastreio_how6.produto.CadastroFragment()).commit();
     }
 }
