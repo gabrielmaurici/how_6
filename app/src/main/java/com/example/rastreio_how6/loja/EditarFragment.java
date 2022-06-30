@@ -96,6 +96,7 @@ public class EditarFragment extends Fragment {
             repositorio.atualizaLoja(loja);
 
             Toast.makeText(getActivity(), "Dados atualizados com sucesso!", Toast.LENGTH_SHORT).show();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
         }
     }
 
