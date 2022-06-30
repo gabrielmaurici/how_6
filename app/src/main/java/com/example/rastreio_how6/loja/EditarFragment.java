@@ -52,6 +52,14 @@ public class EditarFragment extends Fragment {
             }
         });
 
+        Button btnDeletar = view.findViewById(R.id.buttonDeletarLoja);
+        btnDeletar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deletar();
+            }
+        });
+
         Button btnVoltar = view.findViewById(R.id.buttonVoltar);
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,13 +86,25 @@ public class EditarFragment extends Fragment {
             Toast.makeText(getActivity(), "É preciso preencher todos os campos do formulário", Toast.LENGTH_SHORT).show();
         } else {
             DatabaseHelper repositorio = new DatabaseHelper(getActivity());
-            Loja loja = new Loja(editTextNomeLojistaEdicao.getText().toString(),
+            Loja loja = new Loja(
+                RepositorioIdLoja.idLoja,
+                editTextNomeLojistaEdicao.getText().toString(),
                 editTextCnpjEdicao.getText().toString(),
                 editTextSenhaEdicao.getText().toString()
             );
 
             repositorio.atualizaLoja(loja);
+
+            Toast.makeText(getActivity(), "Dados atualizados com sucesso!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void deletar() {
+        DatabaseHelper repositorio = new DatabaseHelper(getActivity());
+        repositorio.deletaLoja(RepositorioIdLoja.idLoja);
+
+        Toast.makeText(getActivity(), "Loja deletada com sucesso!", Toast.LENGTH_SHORT).show();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new LoginFragment()).commit();
     }
     
     private void voltar() {

@@ -12,6 +12,13 @@ public class Loja {
         this.senha = senha;
     }
 
+    public Loja (int id, String nome, String cnpj, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.senha = senha;
+    };
+
     public Loja() { }
 
     public int getId() {

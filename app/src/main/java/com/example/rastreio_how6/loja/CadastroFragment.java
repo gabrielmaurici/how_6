@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.rastreio_how6.R;
 import com.example.rastreio_how6.database.DatabaseHelper;
+import com.example.rastreio_how6.database.RepositorioIdLoja;
 import com.example.rastreio_how6.login.LoginFragment;
 
 public class CadastroFragment extends Fragment {
@@ -70,7 +71,8 @@ public class CadastroFragment extends Fragment {
                 editTextSenhaCadastro.getText().toString()
             );
 
-            repositorio.cadastrarLoja(loja);
+            long id = repositorio.cadastrarLoja(loja);
+            RepositorioIdLoja.idLoja = (int)id;
 
             Toast.makeText(getActivity(), "Loja Cadastrada com sucesso!", Toast.LENGTH_LONG).show();
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
