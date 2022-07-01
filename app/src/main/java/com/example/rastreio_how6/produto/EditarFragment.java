@@ -1,10 +1,9 @@
-package com.example.rastreio_how6.loja;
+package com.example.rastreio_how6.produto;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,35 +14,39 @@ import android.widget.Toast;
 import com.example.rastreio_how6.R;
 import com.example.rastreio_how6.database.DatabaseHelper;
 import com.example.rastreio_how6.database.RepositorioIdLoja;
-import com.example.rastreio_how6.login.LoginFragment;
+import com.example.rastreio_how6.loja.Loja;
+import com.example.rastreio_how6.loja.MenuFragment;
 
 
 public class EditarFragment extends Fragment {
 
-    EditText editTextNomeLojistaEdicao, editTextCnpjEdicao, editTextSenhaEdicao;
+    private EditText EditTextNome, EditTextValor, EditTextDescricao;
+    private int id_produto, id_loja;
 
     public EditarFragment() {
+        // Required empty public constructor
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_editar_produto, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_editar_loja, container, false);
+        EditTextNome = view.findViewById(R.id.editTextNomeProdutoEdicao);
+        EditTextValor = view.findViewById(R.id.editTextValorProdutoEdicao);
+        EditTextDescricao = view.findViewById(R.id.editTextDescricaoProdutoEdicao);
 
-        editTextNomeLojistaEdicao = view.findViewById(R.id.editTextNomeLojistaEdicao);
-        editTextCnpjEdicao = view.findViewById(R.id.editTextCnpjEdicao);
-        editTextSenhaEdicao = view.findViewById(R.id.editTextSenhaEdicao);
+        Bundle b = getArguments();
+        id_produto = b.getInt("id");
 
-        buscarLoja();
+        buscarProduto();
 
-        Button btnEditar = view.findViewById(R.id.buttonSalvarAlteracoesLoja);
+        Button btnEditar = view.findViewById(R.id.buttonSalvarAlteracoesProduto);
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +54,7 @@ public class EditarFragment extends Fragment {
             }
         });
 
-        Button btnDeletar = view.findViewById(R.id.buttonDeletarLoja);
+        Button btnDeletar = view.findViewById(R.id.buttonDeletarProduto);
         btnDeletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,43 +73,45 @@ public class EditarFragment extends Fragment {
         return view;
     }
 
-    private void buscarLoja() {
+    private void buscarProduto() {
         DatabaseHelper repositorio = new DatabaseHelper(getActivity());
-        Loja loja = repositorio.buscaLojaPorId(RepositorioIdLoja.idLoja);
-        editTextNomeLojistaEdicao.setText(loja.getNome());
-        editTextCnpjEdicao.setText(loja.getCnpj());
-        editTextSenhaEdicao.setText(loja.getSenha());
+        Produto produto = repositorio.buscaProdutoPorId(id_produto);
+        id_loja = produto.getId_loja();
+        EditTextNome.setText(produto.getNome());
+        EditTextValor.setText(produto.getValor());
+        EditTextDescricao.setText(produto.getDescricao());
     }
 
     private void editar() {
-        if(editTextNomeLojistaEdicao.getText().toString().equals("") ||
-                editTextCnpjEdicao.getText().toString().equals("") ||
-                editTextSenhaEdicao.getText().toString().equals("")) {
+        if(EditTextNome.getText().toString().equals("") ||
+                EditTextValor.getText().toString().equals("") ||
+                EditTextDescricao.getText().toString().equals("")) {
             Toast.makeText(getActivity(), "É preciso preencher todos os campos do formulário", Toast.LENGTH_SHORT).show();
         } else {
             DatabaseHelper repositorio = new DatabaseHelper(getActivity());
-            Loja loja = new Loja(
-                RepositorioIdLoja.idLoja,
-                editTextNomeLojistaEdicao.getText().toString(),
-                editTextCnpjEdicao.getText().toString(),
-                editTextSenhaEdicao.getText().toString()
+            Produto produto = new Produto(
+                    id_produto,
+                    id_loja,
+                    EditTextNome.getText().toString(),
+                    EditTextValor.getText().toString(),
+                    EditTextDescricao.getText().toString()
             );
 
-            repositorio.atualizaLoja(loja);
+            repositorio.atualizaProduto(produto);
 
             Toast.makeText(getActivity(), "Dados atualizados com sucesso!", Toast.LENGTH_SHORT).show();
-            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new ListarFragment()).commit();
         }
     }
 
     private void deletar() {
         DatabaseHelper repositorio = new DatabaseHelper(getActivity());
-        repositorio.deletaLoja(RepositorioIdLoja.idLoja);
+        repositorio.deletaProduto(id_produto);
 
-        Toast.makeText(getActivity(), "Loja deletada com sucesso!", Toast.LENGTH_SHORT).show();
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new LoginFragment()).commit();
+        Toast.makeText(getActivity(), "Produto deletado com sucesso!", Toast.LENGTH_SHORT).show();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new ListarFragment()).commit();
     }
-    
+
     private void voltar() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
     }

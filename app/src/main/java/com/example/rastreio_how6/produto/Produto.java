@@ -8,12 +8,22 @@ public class Produto {
     private String valor;
     private String descricao;
 
+    public Produto(int id, int id_loja, String nome, String valor, String descricao) {
+        this.id = id;
+        this.id_loja = id_loja;
+        this.nome = nome;
+        this.valor = valor;
+        this.descricao = descricao;
+    }
+
     public Produto(int id_loja, String nome, String valor, String descricao) {
         this.id_loja = id_loja;
         this.nome = nome;
         this.valor = valor;
         this.descricao = descricao;
     }
+
+    public Produto() { }
 
     public int getId() {
         return id;

@@ -132,6 +132,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    public long atualizaProduto (Produto produto) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("nome", produto.getNome());
+        cv.put("valor", produto.getValor());
+        cv.put("descricao", produto.getDescricao());
+        long id = db.update(TABLE_PRODUTO, cv,
+                "_id = ?", new String[]{String.valueOf(produto.getId())});
+        db.close();
+        return id;
+    }
+
+    public long deletaProduto (int idProduto) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long id = db.delete(TABLE_PRODUTO, "_id = ?",
+                new String[]{String.valueOf(idProduto)});
+        db.close();
+        return id;
+    }
+
+
+    public Produto buscaProdutoPorId (int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {"_id", "id_loja", "nome", "valor", "descricao"};
+        String[] args = {String.valueOf(id)};
+        Cursor data = db.query(TABLE_PRODUTO, columns, "_id = ?", args,
+                null, null, null);
+        data.moveToFirst();
+        Produto produto = new Produto();
+        produto.setId(data.getInt(0));
+        produto.setId_loja(data.getInt(1));
+        produto.setNome(data.getString(2));
+        produto.setValor(data.getString(3));
+        produto.setDescricao(data.getString(4));
+        data.close();
+        db.close();
+        return produto;
+    }
+
     public void buscarTodosProdutos (Context context, ListView lv, int idLoja) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] columns = {"_id", "nome", "valor", "descricao"};

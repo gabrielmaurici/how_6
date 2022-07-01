@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".loja.CadastroFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="150dp"
+        android:paddingHorizontal="20dp">
+
+        <TextView
+            android:id="@+id/textViewEditarProduto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="@string/editar_dados_produto" />
+
+        <TextView
+            android:id="@+id/textViewNomeProdutoEdicao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:text="@string/nomeLojista" />
+
+        <EditText
+            android:id="@+id/editTextNomeProdutoEdicao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"/>
+
+        <TextView
+            android:id="@+id/textViewValorProdutoEdicao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="@string/valor" />
+
+        <EditText
+            android:id="@+id/editTextValorProdutoEdicao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"/>
+
+        <TextView
+            android:id="@+id/textViewDescricaoEdicao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="@string/descri_o" />
+
+        <EditText
+            android:id="@+id/editTextDescricaoProdutoEdicao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/buttonSalvarAlteracoesProduto"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:backgroundTint="@color/green"
+            android:layout_marginTop="5dp"
+            android:text="@string/salvar_altera_es" />
+
+        <Button
+            android:id="@+id/buttonDeletarProduto"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:backgroundTint="@color/red"
+            android:layout_marginTop="5dp"
+            android:text="@string/deletar_loja" />
+
+        <Button
+            android:id="@+id/buttonVoltar"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:backgroundTint="@color/black"
+
+            android:text="@string/voltar" />
+
+    </LinearLayout>
+
+</FrameLayout>

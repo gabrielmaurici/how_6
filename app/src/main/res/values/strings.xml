@@ -42,4 +42,5 @@
     <string name="produtos_da_loja">Produtos da Loja</string>
     <string name="id">Id:</string>
     <string name="logout">Logout</string>
+    <string name="editar_dados_produto">Editar Dados Produto</string>
 </resources>
