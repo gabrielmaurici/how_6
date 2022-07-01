@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.rastreio_how6.database.RepositorioIdLoja;
 import com.example.rastreio_how6.encomenda.CadastroFragment;
 import com.example.rastreio_how6.R;
+import com.example.rastreio_how6.login.LoginFragment;
+import com.example.rastreio_how6.produto.ListarFragment;
 
 public class MenuFragment extends Fragment {
 
@@ -55,11 +58,33 @@ public class MenuFragment extends Fragment {
             }
         });
 
+        Button btnlistarProduto = view.findViewById(R.id.buttonListarProdutos);
+        btnlistarProduto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listarProdutos();
+            }
+        });
+
+
+        Button btnLogout = view.findViewById(R.id.buttonLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
+
         return view;
     }
 
     private void editarDados() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new EditarFragment()).commit();
+    }
+
+    private void logout() {
+        RepositorioIdLoja.idLoja = 0;
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new LoginFragment()).commit();
     }
 
     private void cadastrarEncomenda() {
@@ -68,5 +93,9 @@ public class MenuFragment extends Fragment {
 
     private void cadastrarProduto() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new com.example.rastreio_how6.produto.CadastroFragment()).commit();
+    }
+
+    private void listarProdutos() {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new ListarFragment()).commit();
     }
 }

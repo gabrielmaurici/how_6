@@ -42,7 +42,6 @@ public class LoginFragment extends Fragment {
         editTextCnpj = view.findViewById(R.id.editTextCnpj);
         editTextSenha = view.findViewById(R.id.editTextSenha);
 
-
         Button btnRastrearEncomenda = view.findViewById(R.id.buttonRastrear);
         btnRastrearEncomenda.setOnClickListener(new View.OnClickListener() {
             @Override

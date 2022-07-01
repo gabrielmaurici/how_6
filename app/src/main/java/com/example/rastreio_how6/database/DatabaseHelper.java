@@ -5,15 +5,21 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 import androidx.annotation.Nullable;
 
+import com.example.rastreio_how6.R;
 import com.example.rastreio_how6.loja.Loja;
+import com.example.rastreio_how6.produto.Produto;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "rastreio";
+
     private static final String TABLE_LOJA = "loja";
+    private static final String TABLE_PRODUTO = "produto";
 
     private static final String CREATE_TABLE_LOJA = "CREATE TABLE " + TABLE_LOJA + "(" +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -21,21 +27,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "cnpj VARCHAR(100), " +
             "senha VARCHAR(50))";
 
+    private static final String CREATE_TABLE_PRODUTO = "CREATE TABLE " + TABLE_PRODUTO + "(" +
+            "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "id_loja INTEGER, " +
+            "nome VARCHAR(100), " +
+            "valor VARCHAR(15), " +
+            "descricao VARCHAR(150), " +
+            "CONSTRAINT fk_produto_loja FOREIGN KEY (id_loja) REFERENCES loja (id))";
+
+    private static final String DROP_TABLE_LOJA = "DROP TABLE IF EXISTS " + TABLE_LOJA;
+    private static final String DROP_TABLE_PRODUTO = "DROP TABLE IF EXISTS " + TABLE_PRODUTO;
+
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_TABLE_LOJA);
+        sqLiteDatabase.execSQL(CREATE_TABLE_PRODUTO);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL(CREATE_TABLE_LOJA);
+        sqLiteDatabase.execSQL(DROP_TABLE_LOJA);
+        sqLiteDatabase.execSQL(DROP_TABLE_PRODUTO);
         onCreate(sqLiteDatabase);
     }
 
+    // CRUD Loja
     public long cadastrarLoja (Loja loja) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -97,4 +117,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return data.getInt(0);
     }
+    // Fim CRUD Loja
+
+    // CRUD Produto
+    public long cadastrarProduto (Produto produto) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("id_loja", produto.getId_loja());
+        cv.put("nome", produto.getNome());
+        cv.put("valor", produto.getValor());
+        cv.put("descricao", produto.getDescricao());
+        long id = db.insert(TABLE_PRODUTO, null, cv);
+        db.close();
+        return id;
+    }
+
+    public void buscarTodosProdutos (Context context, ListView lv, int idLoja) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {"_id", "nome", "valor", "descricao"};
+        String[] args = {String.valueOf(idLoja)};
+        Cursor data = db.query(TABLE_PRODUTO, columns, "id_loja = ?", args,
+                null, null, "nome");
+        int[] to = {R.id.textViewIdListarProduto, R.id.textViewNomeListarProduto,
+                R.id.textViewValorListarProduto, R.id.textViewDescricaoListarProduto};
+        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(context,
+                R.layout.produto_list_view, data, columns, to, 0);
+        lv.setAdapter(simpleCursorAdapter);
+        db.close();
+    }
+    // Fim CRUD Produto
 }

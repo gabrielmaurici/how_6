@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="20dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="100dp"
         tools:ignore="UselessParent">
 
 
@@ -79,6 +79,14 @@
             android:backgroundTint="@color/black"
             android:text="@string/listar_produtos" />
 
+
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/yellow"
+            android:layout_marginTop="50dp"
+            android:text="@string/logout" />
 
         <FrameLayout
             android:id="@+id/frame_menuLoja"

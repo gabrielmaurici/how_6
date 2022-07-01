@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="170dp"
         android:paddingHorizontal="20dp">
 
         <TextView
@@ -20,20 +20,6 @@
             android:textStyle="bold"
             android:textAlignment="center"
             android:text="@string/cadastrar_produto" />
-
-        <TextView
-            android:id="@+id/textViewIdLoja"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:text="@string/id_da_loja" />
-
-        <EditText
-            android:id="@+id/editTextIdLoja"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"/>
 
         <TextView
             android:id="@+id/textViewNomeProduto"
