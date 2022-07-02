@@ -34,11 +34,15 @@ public class ListarFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_listar_produtos, container, false);
 
+        // Linka listview da tela com variável
         ListView listView = view.findViewById(R.id.listViewProdutos);
 
+        // Realiza consulta da listagem de produtos por id da loja
         DatabaseHelper repositorio = new DatabaseHelper(getActivity());
         repositorio.buscarTodosProdutos(getActivity(), listView, RepositorioIdLoja.idLoja);
 
+        // Cria onClick na listagem dos produtos
+        // Passa id do produto via bundle para o fragment da tela de edição
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -64,6 +68,7 @@ public class ListarFragment extends Fragment {
         return view;
     }
 
+    // Chama Fragment para voltar para o menu
     private void voltar() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
     }

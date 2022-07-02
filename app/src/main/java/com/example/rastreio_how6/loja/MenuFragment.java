@@ -32,8 +32,8 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_menu_loja, container, false);
 
-
-
+        // Linkando botões com os botões da tela
+        // e chamando os métodos que contém as funcionalidades de cada botão
         Button btnEditarDados = view.findViewById(R.id.buttonEditarLoja);
         btnEditarDados.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +78,8 @@ public class MenuFragment extends Fragment {
         return view;
     }
 
+
+    // Funções responsáveis por chamar os fragments referentes a cada botão
     private void editarDados() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new EditarFragment()).commit();
     }

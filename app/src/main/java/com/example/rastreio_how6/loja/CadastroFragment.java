@@ -34,11 +34,14 @@ public class CadastroFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cadastro_loja, container, false);
 
+
+        // Linka variáveis com campos da tela
         editTextNomeLoja = view.findViewById(R.id.editTextNomeLoja);
         editTextCnpjCadastro = view.findViewById(R.id.editTextCnpjCadastro);
         editTextSenhaCadastro = view.findViewById(R.id.editTextSenhaCadastro);
 
-
+        // Linkando botões com os botões da tela
+        // e chamando os métodos que contém as funcionalidades de cada botão
         Button btnCadastrarLoja = view.findViewById(R.id.buttonCadastrarLoja);
         btnCadastrarLoja.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +61,9 @@ public class CadastroFragment extends Fragment {
         return view;
     }
 
+    // Método que verifica se os campos foram preenchidos
+    // Realiza insert no db e trata mensagens e redirect
+    // Armazena id da loja na propriedade IdLoja da classe static RepositorioIdLoja para funcionalidades futuras
     private void cadastrar() {
         if(editTextNomeLoja.getText().toString().equals("") ||
             editTextCnpjCadastro.getText().toString().equals("") ||
@@ -79,6 +85,7 @@ public class CadastroFragment extends Fragment {
         }
     }
 
+    // Chama redirect para o LoginFragment
     private void voltar() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new LoginFragment()).commit();;
     }

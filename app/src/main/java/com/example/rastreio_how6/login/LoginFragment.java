@@ -21,8 +21,7 @@ import com.example.rastreio_how6.viewRastreio.RastrearEncomenda;
 
 public class LoginFragment extends Fragment {
 
-    private EditText editTextCnpj;
-    private EditText editTextSenha;
+    private EditText editTextCnpj, editTextSenha;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -39,9 +38,12 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
+        // Linkando variáveis com os campos da tela
         editTextCnpj = view.findViewById(R.id.editTextCnpj);
         editTextSenha = view.findViewById(R.id.editTextSenha);
 
+        // Linkando botões com os botões da tela
+        // e chamando os métodos que contém as funcionalidades de cada botão
         Button btnRastrearEncomenda = view.findViewById(R.id.buttonRastrear);
         btnRastrearEncomenda.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,10 +71,14 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
+    // Chama Fragment para rastreio de encomendas pro código
     private void rastrear() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new RastrearEncomenda()).commit();
     }
 
+    // Método que verifica se os campos foram preenchidos
+    // Realiza consulta no db e trata mensagens e redirect
+    // Armazena id da loja na propriedade IdLoja da classe static RepositorioIdLoja para funcionalidades futuras
     private void realizarLogin() {
         if(editTextCnpj.getText().toString().equals("") || editTextSenha.getText().toString().equals("")) {
             Toast.makeText(getActivity(), "CNPJ ou Senha inválidos", Toast.LENGTH_SHORT).show();
@@ -90,6 +96,7 @@ public class LoginFragment extends Fragment {
         }
     }
 
+    // Chama Fragment para cadastro de uma loja
     private void cadastrarLoja() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new CadastroFragment()).commit();
     }

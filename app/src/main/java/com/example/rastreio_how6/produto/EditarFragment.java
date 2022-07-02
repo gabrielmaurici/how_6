@@ -37,15 +37,20 @@ public class EditarFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_editar_produto, container, false);
 
+        // Linkando variáveis com os campos da tela
         EditTextNome = view.findViewById(R.id.editTextNomeProdutoEdicao);
         EditTextValor = view.findViewById(R.id.editTextValorProdutoEdicao);
         EditTextDescricao = view.findViewById(R.id.editTextDescricaoProdutoEdicao);
 
+        // Recebe id do produto via bundle
         Bundle b = getArguments();
         id_produto = b.getInt("id");
 
+        // Busca produto por id
         buscarProduto();
 
+        // Linkando botões com os botões da tela
+        // e chamando os métodos que contém as funcionalidades de cada botão
         Button btnEditar = view.findViewById(R.id.buttonSalvarAlteracoesProduto);
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +78,7 @@ public class EditarFragment extends Fragment {
         return view;
     }
 
+    // Busca produto por id no db
     private void buscarProduto() {
         DatabaseHelper repositorio = new DatabaseHelper(getActivity());
         Produto produto = repositorio.buscaProdutoPorId(id_produto);
@@ -82,6 +88,8 @@ public class EditarFragment extends Fragment {
         EditTextDescricao.setText(produto.getDescricao());
     }
 
+    // Método que verifica se os campos foram preenchidos
+    // Realiza update no db e trata mensagens e redirect
     private void editar() {
         if(EditTextNome.getText().toString().equals("") ||
                 EditTextValor.getText().toString().equals("") ||
@@ -104,6 +112,7 @@ public class EditarFragment extends Fragment {
         }
     }
 
+    // Realiza delete no db e trata mensagens e redirect
     private void deletar() {
         DatabaseHelper repositorio = new DatabaseHelper(getActivity());
         repositorio.deletaProduto(id_produto);
@@ -112,6 +121,7 @@ public class EditarFragment extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new ListarFragment()).commit();
     }
 
+    // Chama Fragment para voltar para o menu
     private void voltar() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
     }
