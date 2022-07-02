@@ -77,7 +77,7 @@
             android:layout_height="50sp"
             android:backgroundTint="@color/red"
             android:layout_marginTop="5dp"
-            android:text="@string/deletar_loja" />
+            android:text="@string/deletar_produto" />
 
         <Button
             android:id="@+id/buttonVoltar"

@@ -43,4 +43,5 @@
     <string name="id">Id:</string>
     <string name="logout">Logout</string>
     <string name="editar_dados_produto">Editar Dados Produto</string>
+    <string name="deletar_produto">Deletar Produto</string>
 </resources>
