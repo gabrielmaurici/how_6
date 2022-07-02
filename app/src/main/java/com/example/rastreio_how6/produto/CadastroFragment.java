@@ -63,6 +63,8 @@ public class CadastroFragment extends Fragment {
 
     // Método que verifica se os campos foram preenchidos
     // Realiza insert no db e trata mensagens e redirect
+    // Utiliza classe static RepositorioIdLoja para enviar o id da loja no cadastro do produto
+    // junto das outras informações inseridas pelo usuário
     private void cadastrarProduto() {
         if(editTextNomeProduto.getText().toString().equals("") ||
             editTextValorProduto.getText().toString().equals("") ||
