@@ -19,42 +19,35 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:text="@string/cadastrar_encomenda" />
+            android:text="Editar Encomenda" />
 
         <TextView
-            android:id="@+id/textViewIdProduto"
+            android:id="@+id/textViewIdProdutoEdicao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
             android:text="Id do Produto" />
 
         <EditText
-            android:id="@+id/editTextIdProduto"
+            android:id="@+id/editTextIdProdutoEdicao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"/>
 
         <TextView
-            android:id="@+id/textViewStatusEncomenda"
+            android:id="@+id/textViewStatusEncomendaEdicao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:text="@string/status_encomenda" />
 
-        <TextView
-            android:id="@+id/editTextStatusEncomenda"
+        android:textSize="16dp"
+        <EditText
+            android:id="@+id/editTextStatusEncomendaEdicao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:ems="10"
-            android:textSize="16dp"
-            android:text="@string/enviado_para_transportadora"/>
-
-        <View
-            android:layout_height="1dp"
-            android:layout_width="match_parent"
-            android:background="#000000"/>
+            android:ems="10"/>
 
 
         <Button
@@ -63,7 +56,15 @@
             android:layout_height="50sp"
             android:backgroundTint="@color/green"
             android:layout_marginTop="5dp"
-            android:text="@string/cadastrar_encomenda" />
+            android:text="@string/salvar_altera_es" />
+
+        <Button
+                android:id="@+id/buttonDeletarEncomendaFinal"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:backgroundTint="@color/red"
+                android:layout_marginTop="5dp"
+                android:text="Deletar Encomenda" />
 
         <Button
             android:id="@+id/buttonVoltar"

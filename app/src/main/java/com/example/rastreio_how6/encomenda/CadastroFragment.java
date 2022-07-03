@@ -33,7 +33,7 @@ public class CadastroFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cadastrar_encomenda, container, false);
 
-        editTextIdLoja = view.findViewById(R.id.editTextIdLoja);
+
         editTextIdProduto = view.findViewById(R.id.editTextIdProduto);
 
         Button btnCadastrarEncomenda = view.findViewById(R.id.buttonCadastrarEncomendaFinal);
@@ -56,7 +56,7 @@ public class CadastroFragment extends Fragment {
     }
 
     private void cadastrarEncomenda() {
-        if(editTextIdLoja.getText().toString().equals("") || editTextIdProduto.getText().toString().equals("")) {
+        if(editTextIdProduto.getText().toString().equals("")) {
             Toast.makeText(getActivity(), "É preciso preencher todos os campos do formulário", Toast.LENGTH_SHORT).show();
         } else {
             // cadastrar encomenda

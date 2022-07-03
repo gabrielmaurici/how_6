@@ -123,6 +123,6 @@ public class EditarFragment extends Fragment {
 
     // Chama Fragment para voltar para o menu
     private void voltar() {
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new MenuFragment()).commit();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new ListarFragment()).commit();
     }
 }
