@@ -43,7 +43,7 @@
             android:text="@string/status_encomenda" />
 
         <TextView
-            android:id="@+id/editTextStatusEncomenda"
+            android:id="@+id/textViewStatusEncomendaValor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="15dp"

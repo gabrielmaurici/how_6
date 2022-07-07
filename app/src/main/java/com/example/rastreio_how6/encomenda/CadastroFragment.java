@@ -9,14 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rastreio_how6.R;
+import com.example.rastreio_how6.database.RepositorioIdLoja;
 import com.example.rastreio_how6.loja.MenuFragment;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
 
 public class CadastroFragment extends Fragment {
 
-    EditText editTextIdLoja, editTextIdProduto;
+    TextView textViewStatusEncomenda;
+    EditText editTextIdProduto;
 
     public CadastroFragment() {
 
@@ -35,6 +42,7 @@ public class CadastroFragment extends Fragment {
 
 
         editTextIdProduto = view.findViewById(R.id.editTextIdProduto);
+        textViewStatusEncomenda = view.findViewById(R.id.textViewStatusEncomendaValor);
 
         Button btnCadastrarEncomenda = view.findViewById(R.id.buttonCadastrarEncomendaFinal);
         btnCadastrarEncomenda.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +68,16 @@ public class CadastroFragment extends Fragment {
             Toast.makeText(getActivity(), "É preciso preencher todos os campos do formulário", Toast.LENGTH_SHORT).show();
         } else {
             // cadastrar encomenda
+            Encomenda encomenda = new Encomenda(
+                    RepositorioIdLoja.idLoja,
+                    Integer.parseInt(editTextIdProduto.getText().toString()),
+                    UUID.randomUUID(),
+                    textViewStatusEncomenda.getText().toString(),
+                    new Date()
+            );
+            SimpleDateFormat sdf1= new SimpleDateFormat("dd/MM/yyyy");
+            String teste = sdf1.format(encomenda.getData_envio());
+            String a = "1";
         }
     }
 
