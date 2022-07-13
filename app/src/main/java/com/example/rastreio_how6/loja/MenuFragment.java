@@ -12,6 +12,7 @@ import android.widget.Button;
 import com.example.rastreio_how6.database.RepositorioIdLoja;
 import com.example.rastreio_how6.encomenda.CadastroFragment;
 import com.example.rastreio_how6.R;
+import com.example.rastreio_how6.encomenda.ListagemFragment;
 import com.example.rastreio_how6.login.LoginFragment;
 import com.example.rastreio_how6.produto.ListarFragment;
 
@@ -47,6 +48,14 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 cadastrarEncomenda();
+            }
+        });
+
+        Button btnListarEncomendas = view.findViewById(R.id.buttonListarEncomendas);
+        btnListarEncomendas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listarEncomendas();
             }
         });
 
@@ -91,6 +100,10 @@ public class MenuFragment extends Fragment {
 
     private void cadastrarEncomenda() {
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new CadastroFragment()).commit();
+    }
+
+    private void listarEncomendas() {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new ListagemFragment()).commit();
     }
 
     private void cadastrarProduto() {

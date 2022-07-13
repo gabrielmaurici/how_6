@@ -7,12 +7,12 @@ public class Encomenda {
     private int id;
     private int id_loja;
     private int id_produto;
-    private UUID guid;
+    private String guid;
     private String status;
-    private Date data_envio;
-    private Date data_alteracao;
+    private String data_envio;
+    private String data_alteracao;
 
-    public Encomenda (int id_loja, int id_produto, UUID guid, String status, Date data_envio) {
+    public Encomenda (int id_loja, int id_produto, String guid, String status, String data_envio) {
         this.id_loja = id_loja;
         this.id_produto = id_produto;
         this.guid = guid;
@@ -45,11 +45,11 @@ public class Encomenda {
         this.id_produto = id_produto;
     }
 
-    public UUID getGuid() {
+    public String getGuid() {
         return guid;
     }
 
-    public void setGuid(UUID guid) {
+    public void setGuid(String guid) {
         this.guid = guid;
     }
 
@@ -61,19 +61,19 @@ public class Encomenda {
         this.status = status;
     }
 
-    public Date getData_envio() {
+    public String getData_envio() {
         return data_envio;
     }
 
-    public void setData_envio(Date data_envio) {
+    public void setData_envio(String data_envio) {
         this.data_envio = data_envio;
     }
 
-    public Date getData_alteracao() {
+    public String getData_alteracao() {
         return data_alteracao;
     }
 
-    public void setData_alteracao(Date data_alteracao) {
+    public void setData_alteracao(String data_alteracao) {
         this.data_alteracao = data_alteracao;
     }
 }

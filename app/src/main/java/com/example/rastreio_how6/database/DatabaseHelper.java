@@ -11,6 +11,7 @@ import android.widget.SimpleCursorAdapter;
 import androidx.annotation.Nullable;
 
 import com.example.rastreio_how6.R;
+import com.example.rastreio_how6.encomenda.Encomenda;
 import com.example.rastreio_how6.loja.Loja;
 import com.example.rastreio_how6.produto.Produto;
 
@@ -20,6 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_LOJA = "loja";
     private static final String TABLE_PRODUTO = "produto";
+    private static final String TABLE_ENCOMENDA = "encomenda";
 
     private static final String CREATE_TABLE_LOJA = "CREATE TABLE " + TABLE_LOJA + "(" +
             "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -35,23 +37,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "descricao VARCHAR(150), " +
             "CONSTRAINT fk_produto_loja FOREIGN KEY (id_loja) REFERENCES loja (id))";
 
+    private static final String CREATE_TABLE_ENCOMENDA = "CREATE TABLE " + TABLE_ENCOMENDA + "(" +
+            "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            "id_loja INTEGER, " +
+            "id_produto INTEGER, " +
+            "status VARCHAR(100), " +
+            "guid VARCHAR(35), " +
+            "data_envio DATE, " +
+            "data_alteracao DATE, " +
+            "CONSTRAINT fk_encomenda_loja FOREIGN KEY (id_loja) REFERENCES loja (id), " +
+            "CONSTRAINT fk_encomenda_produto FOREIGN KEY (id_produto) REFERENCES produto (id))";
+
     private static final String DROP_TABLE_LOJA = "DROP TABLE IF EXISTS " + TABLE_LOJA;
     private static final String DROP_TABLE_PRODUTO = "DROP TABLE IF EXISTS " + TABLE_PRODUTO;
+    private static final String DROP_TABLE_ENCOMENDA = "DROP TABLE IF EXISTS " + TABLE_ENCOMENDA;
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 2);
+        super(context, DATABASE_NAME, null, 3);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_TABLE_LOJA);
         sqLiteDatabase.execSQL(CREATE_TABLE_PRODUTO);
+        sqLiteDatabase.execSQL(CREATE_TABLE_ENCOMENDA);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL(DROP_TABLE_LOJA);
         sqLiteDatabase.execSQL(DROP_TABLE_PRODUTO);
+        sqLiteDatabase.execSQL(DROP_TABLE_ENCOMENDA);
         onCreate(sqLiteDatabase);
     }
 
@@ -185,4 +201,36 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
     // Fim CRUD Produto
+
+    // CRUD Encomenda
+    public long cadastrarEncomenda (Encomenda encomenda) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("id_loja", encomenda.getId_loja());
+        cv.put("id_produto", encomenda.getId_produto());
+        cv.put("guid", encomenda.getGuid());
+        cv.put("status", encomenda.getStatus());
+        cv.put("data_envio", encomenda.getData_envio());
+        cv.put("data_alteracao", encomenda.getData_alteracao());
+        long id = db.insert(TABLE_ENCOMENDA, null, cv);
+        db.close();
+        return id;
+    }
+
+    public void buscarTodasEncomendas (Context context, ListView lv, int idLoja) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {"_id", "guid", "status", "data_envio", "data_alteracao"};
+        String[] args = {String.valueOf(idLoja)};
+        Cursor data = db.query(TABLE_ENCOMENDA, columns, "id_loja = ?", args,
+                null, null, "_id");
+        int[] to = {R.id.textViewValorIdEncomenda, R.id.textViewValorCodigoEncomenda,
+                R.id.textViewValorStatusEncomenda, R.id.textViewValorDataEnvioEncomenda,
+                R.id.textViewValorDataAlteracao
+        };
+        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(context,
+                R.layout.encomenda_list_view, data, columns, to, 0);
+        lv.setAdapter(simpleCursorAdapter);
+        db.close();
+    }
+    // Fim CRUD Encomenda
 }

@@ -44,4 +44,7 @@
     <string name="logout">Logout</string>
     <string name="editar_dados_produto">Editar Dados Produto</string>
     <string name="deletar_produto">Deletar Produto</string>
+    <string name="encomendas_da_loja">Encomendas da Loja</string>
+    <string name="codigo_encomenda">Código Encomenda:</string>
+    <string name="dataAlteracao">Data Alteração:</string>
 </resources>

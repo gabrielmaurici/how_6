@@ -13,8 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rastreio_how6.R;
+import com.example.rastreio_how6.database.DatabaseHelper;
 import com.example.rastreio_how6.database.RepositorioIdLoja;
 import com.example.rastreio_how6.loja.MenuFragment;
+import com.example.rastreio_how6.produto.ListarFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -71,14 +73,23 @@ public class CadastroFragment extends Fragment {
             Encomenda encomenda = new Encomenda(
                     RepositorioIdLoja.idLoja,
                     Integer.parseInt(editTextIdProduto.getText().toString()),
-                    UUID.randomUUID(),
+                    UUID.randomUUID().toString(),
                     textViewStatusEncomenda.getText().toString(),
-                    new Date()
+                    formatarData(new Date())
             );
-            SimpleDateFormat sdf1= new SimpleDateFormat("dd/MM/yyyy");
-            String teste = sdf1.format(encomenda.getData_envio());
-            String a = "1";
+
+            DatabaseHelper repositorio = new DatabaseHelper(getActivity());
+            repositorio.cadastrarEncomenda(encomenda);
+
+            Toast.makeText(getActivity(), "Encomenda cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.login_main, new ListagemFragment()).commit();
         }
+    }
+
+    // Formata data para padrão brasileiro
+    private String formatarData(Date data) {
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        return formatador.format(data);
     }
 
     private void voltar() {
