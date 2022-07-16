@@ -13,13 +13,13 @@
         android:paddingHorizontal="20dp">
 
         <TextView
-            android:id="@+id/textViewCadastrarEncomenda"
+            android:id="@+id/textViewEditarEncomenda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:text="Editar Encomenda" />
+            android:text="@string/editar_encomenda" />
 
         <TextView
             android:id="@+id/textViewIdProdutoEdicao"
@@ -42,16 +42,14 @@
             android:paddingTop="10dp"
             android:text="@string/status_encomenda" />
 
-        android:textSize="16dp"
         <EditText
             android:id="@+id/editTextStatusEncomendaEdicao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"/>
 
-
         <Button
-            android:id="@+id/buttonCadastrarEncomendaFinal"
+            android:id="@+id/buttonEditarrEncomendaFinal"
             android:layout_width="match_parent"
             android:layout_height="50sp"
             android:backgroundTint="@color/green"
@@ -75,7 +73,7 @@
             android:text="@string/voltar" />
 
         <FrameLayout
-            android:id="@+id/frame_cadastrarEncomenda"
+            android:id="@+id/frame_editarEncomenda"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </FrameLayout>

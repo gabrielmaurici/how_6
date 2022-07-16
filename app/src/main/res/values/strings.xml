@@ -47,4 +47,5 @@
     <string name="encomendas_da_loja">Encomendas da Loja</string>
     <string name="codigo_encomenda">Código Encomenda:</string>
     <string name="dataAlteracao">Data Alteração:</string>
+    <string name="editar_encomenda">Editar Encomenda</string>
 </resources>

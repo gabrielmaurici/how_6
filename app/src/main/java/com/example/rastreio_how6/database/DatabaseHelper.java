@@ -232,5 +232,69 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         lv.setAdapter(simpleCursorAdapter);
         db.close();
     }
+
+    public Encomenda buscarEncomendaPorId (int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {"_id", "id_loja", "id_produto", "guid", "status", "data_envio", "data_alteracao"};
+        String[] args = {String.valueOf(id)};
+        Cursor data = db.query(TABLE_ENCOMENDA, columns, "_id = ?", args,
+                null, null, null);
+        data.moveToFirst();
+        Encomenda encomenda = new Encomenda();
+        encomenda.setId(data.getInt(0));
+        encomenda.setId_loja(data.getInt(1));
+        encomenda.setId_produto(data.getInt(2));
+        encomenda.setGuid(data.getString(3));
+        encomenda.setStatus(data.getString(4));
+        encomenda.setData_envio(data.getString(5));
+        encomenda.setData_alteracao(data.getString(6));
+        data.close();
+        db.close();
+        return encomenda;
+    }
+
+    public Encomenda buscarEncomendaPorGuid (String guid) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] columns = {"_id", "id_loja", "id_produto", "guid", "status", "data_envio", "data_alteracao"};
+        String[] args = {String.valueOf(guid)};
+        Cursor data = db.query(TABLE_ENCOMENDA, columns, "guid = ?", args,
+                null, null, null);
+        data.moveToFirst();
+
+        if(data.getCount() == 0)
+            return new Encomenda();
+
+        Encomenda encomenda = new Encomenda();
+        encomenda.setId(data.getInt(0));
+        encomenda.setId_loja(data.getInt(1));
+        encomenda.setId_produto(data.getInt(2));
+        encomenda.setGuid(data.getString(3));
+        encomenda.setStatus(data.getString(4));
+        encomenda.setData_envio(data.getString(5));
+        encomenda.setData_alteracao(data.getString(6));
+        data.close();
+        db.close();
+        return encomenda;
+    }
+
+    public long atualizarEncomenda (Encomenda encomenda) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("id_produto", encomenda.getId_produto());
+        cv.put("status", encomenda.getStatus());
+        cv.put("data_alteracao", encomenda.getData_alteracao());
+        long id = db.update(TABLE_ENCOMENDA, cv,
+                "_id = ?", new String[]{String.valueOf(encomenda.getId())});
+        db.close();
+        return id;
+    }
+
+    public long deletaEncomenda (int idEncomenda) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long id = db.delete(TABLE_ENCOMENDA, "_id = ?",
+                new String[]{String.valueOf(idEncomenda)});
+        db.close();
+        return id;
+    }
     // Fim CRUD Encomenda
 }

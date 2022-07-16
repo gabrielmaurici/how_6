@@ -12,6 +12,8 @@ public class Encomenda {
     private String data_envio;
     private String data_alteracao;
 
+    public Encomenda () { }
+
     public Encomenda (int id_loja, int id_produto, String guid, String status, String data_envio) {
         this.id_loja = id_loja;
         this.id_produto = id_produto;
@@ -19,6 +21,16 @@ public class Encomenda {
         this.status = status;
         this.data_envio = data_envio;
         this.data_alteracao = null;
+    }
+
+    public Encomenda (int id, int id_loja, int id_produto, String guid, String status, String data_envio, String data_alteracao) {
+        this.id = id;
+        this.id_loja = id_loja;
+        this.id_produto = id_produto;
+        this.guid = guid;
+        this.status = status;
+        this.data_envio = data_envio;
+        this.data_alteracao = data_alteracao;
     }
 
     public int getId() {
